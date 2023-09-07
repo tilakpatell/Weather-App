@@ -61,8 +61,8 @@ city = city_entrybox.get()
 label_2 = ctk.CTkLabel(frame_2, image= ctk_img_2, text = "")
 label_2.place(x=35, y=100)
 
-temperature_label = ctk.CTkLabel(frame_2, bg_color="BLACK", )
-temperature_label.place(x=35, y=250)
+temperature_label = ctk.CTkLabel(frame_2, bg_color="WHITE", font = ("Arial", 20), fg_color="gray", text = "")
+temperature_label.place(x=10, y=250)
 
 temperature = "N/A"
 description = "N/A"
@@ -72,17 +72,16 @@ def get_weather(city):
     url = f"http://api.openweathermap.org/data/2.5/weather?q={city}&appid={API_KEY}&units=metric"
     response = requests.get(url)
 
-    if response.status_code == 200:  # Check if the request was successful
+    if response.status_code == 200:  
         weather_data = response.json()
 
-        # Check if 'main' key exists in the response before extracting data
         if 'main' in weather_data:
-            temperature = weather_data['main']['temp']  # Temperature in Celsius
-            description = weather_data['weather'][0]['description']  # Weather description
+            temperature = weather_data['main']['temp']  
+            description = weather_data['weather'][0]['description']  
         else:
-            label_2.configure(text="Error: Weather data not found for this location.")
+            temperature_label.configure(text="Error: Weather data not found for this location.")
     else:
-        label_2.configure(text="Error: Failed to fetch weather data. Check your city name and API key.")
+        temperature_label.configure(text="Error: Failed to fetch weather data. Check your city name and API key.")
 
     temperature_label.configure(text=f"Temperature: {temperature}°C\nDescription: {description}")
     
