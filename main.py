@@ -52,7 +52,7 @@ def get_city():
 city_entrybox = ctk.CTkEntry(frame_2, width=175,height = 35, font=("Arial", 20), textvariable=stringvariable,)
 city_entrybox.place(x=12.5, y=13)
 
-city_button = ctk.CTkButton(frame_2, text="Search", width=175, height=1, font=("Arial", 20), command=get_city, fg_color="LIGHTGRAY")
+city_button = ctk.CTkButton(frame_2, text="Search", width=175, height=1, font=("Arial", 20), command=get_city, fg_color="GRAY", bg_color="BLACK")
 city_button.place(x=12.5, y=60)
 
 city = city_entrybox.get()
